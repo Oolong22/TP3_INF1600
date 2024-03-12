@@ -37,10 +37,12 @@ start_exec:
     movw (%edi, %ebx, 2), %ax
 
     # TODO: put in IR and OPERANDE correct values
+    movw %ax, IR
+    movb %al, OPERANDE
 
 
     # TODO: put in %ax the opcode
-    mov (%edi), %eax
+    shr $12, %ax
     
 
     cmpw $ADD, %ax
