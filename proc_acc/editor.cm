@@ -1,0 +1,16 @@
+.text
+start:
+ld sum
+add top
+st sum
+ld top
+sub one
+brz end
+st top
+br start
+end:
+stop
+.data
+top: 10
+one: 1
+sum: 0
