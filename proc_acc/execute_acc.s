@@ -1,3 +1,4 @@
+# set args editor.cm
 .data
 PC:
 .word 0
@@ -74,15 +75,30 @@ start_exec:
         jmp end_switch
 
     sub_case:
-        # TODO: Update ACC
+        # TODO: Update ACC 
+        xor %eax, %eax
+        movb (OPERANDE), %al
+        movw (%edi, %eax, 2), %ax
+        subb %al, (ACC)
         jmp end_switch
 
     mul_case:
         # TODO: Update ACC
+        xor %eax, %eax
+        xor %edx, %edx
+        movl $ACC, %eax
+        mull OPERANDE
+        mov %eax, (ACC)
         jmp end_switch
 
     st_case:
         # TODO
+        xor %ecx, %ecx
+        xor %eax, %eax
+        movb (OPERANDE), %al
+        movw (ACC), %cx
+        movw %cx, (%edi, %eax, 2)
+        jmp end_switch
         jmp end_switch
 
     ld_case:
