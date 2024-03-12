@@ -37,11 +37,30 @@ start_exec:
     movw (%edi, %ebx, 2), %ax
 
     # TODO: put in IR and OPERANDE correct values
+
+
     # TODO: put in %ax the opcode
+    mov (%edi), %eax
+    
 
     cmpw $ADD, %ax
     je add_case
-    # TODO: rest of cases
+    cmpw $SUB, %ax
+    je sub_case
+    cmpw $MUL, %ax
+    je mul_case
+    cmpw $ST, %ax
+    je st_case
+    cmpw $LD, %ax
+    je ld_case
+    cmpw $BR, %ax
+    je br_case
+    cmpw $BRZ, %ax
+    je brz_case
+    cmpw $BRNZ, %ax
+    je brnz_case
+    cmpw $STOP, %ax
+    je stop_case
     cmpw $NOP, %ax
     je end_switch
 
