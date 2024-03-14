@@ -99,7 +99,6 @@ start_exec:
         movw (ACC), %cx
         movw %cx, (%edi, %eax, 2)
         jmp end_switch
-        jmp end_switch
 
     ld_case:
         xor %eax, %eax
@@ -115,11 +114,20 @@ start_exec:
 
     brz_case:
         # TODO
+        movw (%edi, %ebx, 2), %ax
+        cmp $0, ACC
+        jne notZero
+        movb %al, (PC)
+        notZero:
         jmp end_switch
-
 
     brnz_case:
         # TODO
+        movw (%edi, %ebx, 2), %ax
+        cmp $0, ACC
+        je zero
+        movb %al, (PC)
+        zero:
         jmp end_switch
 
     stop_case:
