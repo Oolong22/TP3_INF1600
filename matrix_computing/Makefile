@@ -12,7 +12,7 @@ TARGET := out
 
 .PHONY: all clean run
 
-all: $(TARGET)
+all: clean $(TARGET)
 
 $(ASM_OBJ): %.o: %.S
 	$(CXX) $(SHARED_FLAG) -c -o $@ $< $(ASMFLAGS)
