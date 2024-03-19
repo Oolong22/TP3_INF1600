@@ -112,23 +112,29 @@ start_exec:
         movb %al, (PC)
         jmp end_switch
 
-    brz_case:
-        # TODO
-        movw (%edi, %ebx, 2), %ax
-        cmp $0, ACC
-        jne notZero
-        movb %al, (PC)
-        notZero:
-        jmp end_switch
+    brz_case: 
+        # TODO: put in PC the value of OPERANDE if ACC == 0
+        xor %edx, %edx
+        xor %eax, %eax
+        movb (OPERANDE), %al
 
-    brnz_case:
+        movb (ACC), %dl
+        cmp $0, %dl
+        jne end_switch 
+
+        movb %al , (PC)
+
+
+    brnz_case: # jump a l'adresse de l'operande si ACC != 0
         # TODO
-        movw (%edi, %ebx, 2), %ax
-        cmp $0, ACC
-        je zero
-        movb %al, (PC)
-        zero:
-        jmp end_switch
+        xor %edx, %edx
+        xor %eax, %eax
+        movb (OPERANDE), %al
+
+        movb (ACC), %dl
+        cmp $0, %dl
+        je end_switch 
+        movb %al , (PC)
 
     stop_case:
         jmp end
