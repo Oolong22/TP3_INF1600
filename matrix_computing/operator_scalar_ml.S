@@ -16,11 +16,6 @@ pushl %ebp
 movl  %esp, %ebp
 pushl %ebx
 
-pushl %ecx
-pushl %edx
-xor %ecx, %ecx
-xor %edx, %edx
-
 # Place le scalaire dans la mémoire
 movl 16(%ebp), %eax
 movl %eax, scalaire
@@ -97,8 +92,6 @@ movl %eax, columnCounter
 
 end:
 movl %ebx, %eax
-popl %edx
-popl %ecx
 popl %ebx
 popl %ebp
 #leave
